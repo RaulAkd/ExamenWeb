@@ -13,13 +13,16 @@ export class ControladorMateria{
     crearMateria(@Body() bodyparams, @Res() response, @Req() request){
         const id = bodyparams.id;
         const nombre = bodyparams.nombre;
-        const semestre = bodyparams.semestre;
-        const materia = new Materia(id, nombre, semestre);
+        const descripcion = bodyparams.descripcion;
+        const activo = bodyparams.activo;
+        const fechaCreacion = bodyparams.fechaCreacion;
+        const numeroHorasPorSemana = bodyparams.numeroHorasPorSemana;
+        const estudianteId = bodyparams.estudianteId;
+        const materia = new Materia(id, nombre, descripcion, activo, fechaCreacion, numeroHorasPorSemana, estudianteId);
         const materiasc = this.servicioMateria.crearMateria(materia);
         response.send(this.servicioMateria.mostrarTodasLasMaterias());
     }
-    @Get('mostrarMateria')
-    mostrarMateria(){
+    @Get('mostrarMateria')mostrarMateria(){
         return this.servicioMateria.mostrarTodasLasMaterias();
     }
     @Get('obtenerMateria/:id')
@@ -29,7 +32,8 @@ export class ControladorMateria{
     }
     @Put('actualizarPorId/:id')
     actualizarPorId(@Param() paraParams, @Res() response, @Body() bodyparams){
-        const modificarMateria = this.servicioMateria.modificarMateria(paraParams.id, bodyparams.nombre, bodyparams.semestre);
+        // tslint:disable-next-line:max-line-length
+        const modificarMateria = this.servicioMateria.modificarMateria(paraParams.id, bodyparams.nombre, bodyparams.descripcion, bodyparams.activo, bodyparams.fechaCreacion, bodyparams.numeroHorasPorSemana, bodyparams.estudianteId);
         response.send(this.servicioMateria.mostrarTodasLasMaterias());
     }
 }

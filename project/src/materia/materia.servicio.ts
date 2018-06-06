@@ -15,9 +15,10 @@ export class ServicioMaterias{
         const indice = this.materias.findIndex((Materia) => Materia.id === id);
         return this.materias[indice];
     }
-    modificarMateria(id: number, nombre: string, semestre: number){
+    // tslint:disable-next-line:max-line-length
+    modificarMateria(id: number, nombre: string, descripcion: string, activo: string, fechaCreacion: string, numeroHorasPorSemana: number, estudianteId: number){
         const indice = this.materias.findIndex((Materia) => Materia.id === id);
-        const materiaActualizada = new Materia(id, nombre, semestre);
+        const materiaActualizada = new Materia(id, nombre, descripcion, activo, fechaCreacion, numeroHorasPorSemana, estudianteId);
         this.materias[indice] = materiaActualizada;
     }
 }

@@ -5,6 +5,7 @@ export class EsquemasValidacion{
         nombre: Joi.string().regex(/^[a-zA-Z]{3,30}$/),
         apellido: Joi.string().regex(/^[a-zA-Z]{3,30}$/),
         fechaNacimiento: Joi.string(),
-        semestre: Joi.number().integer().min(1).max(8),
+        semestreActual: Joi.number().integer().min(1).max(8),
+        graduado: Joi.string().regex(/^[a-zA-Z]{3,30}$/),
         });
 }

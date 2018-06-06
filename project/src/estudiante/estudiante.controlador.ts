@@ -11,6 +11,13 @@ export class ControladorEstudiante{
     }
     @Post('crearEstudiante')
     @UsePipes(new EstudiantesPipe(new EsquemasValidacion().esquemaEstudiante))
+    /*crearautor(@Body() bodyparams, @Req() request, @Res() response){
+        const id = bodyparams.id;
+        const nombre = bodyparams.nombre;
+        const autor = new Autor (id , nombre);
+        const autoresc = this.servicioAutores.crearAutor(autor);
+        response.send(this.servicioAutores.mostrarTodosLosAutores());
+    }*/
     crearEstudiante(@Body() bodyParams, @Res() response){
         const id = bodyParams.id;
         const nombre = bodyParams.nombre;
@@ -37,7 +44,7 @@ export class ControladorEstudiante{
     @Put('actualizar_por_id/:id')
     actualizar_por_id(@Param() paramParams, @Res() response, @Body() bodyparams){
         const modificarEstudiante = this.servicioEstudiante.modificarEstudianteId(paramParams.id, bodyparams.nombre,
-            bodyparams.apellido, bodyparams.fechaNacimiento, bodyparams.semestreActual, bodyparams.graduadoBolean);
+            bodyparams.apellido, bodyparams.fechaNacimiento, bodyparams.semestreActual, bodyparams.graduado);
         response.send(this.servicioEstudiante.mostrarTodosLosEstudiantes());
     }
 }
